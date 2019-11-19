@@ -37,7 +37,7 @@ const PresentationalTreeView = (props: Props) => {
     }, [props])
 
     return (
-        <List>
+        <List component='nav'>
             {treeItem()}
         </List>
     );

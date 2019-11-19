@@ -35,7 +35,7 @@ const PresentationalTreeItem = (props: Props) => {
                     <ListItemText primary={props.label} />
                 </ListItem>
                 <Collapse in={props.open}>
-                    <List>
+                    <List component='nav' >
                         {props.childItem()}
                     </List>
                 </Collapse>
