@@ -1,3 +1,6 @@
+// const jsonData = require('./data.js/index.js');
+const jsonData = require('./data.js');
+
 const test = () => {
     let s = {
         first: {
@@ -28,16 +31,16 @@ const test = () => {
             }
         },
     }
-    
+
     const c = (sd) => {
-        Object.keys(sd).map((v,i) => {
-            if(v.children) {
+        Object.keys(sd).map((v, i) => {
+            if (v.children) {
                 c(v.children)
             }
         })
     }
 
-    console.log(Object.keys(s.sd).length)
+    console.log(jsonData);
 }
 
 test();
