@@ -60,7 +60,7 @@ const ContainerTreeView = (props: Props) => {
         }
 
         return () => { }
-    }, [props])
+    }, [])
 
     const searchChildrenData = (childArray: any[]) => {
         if (0 !== childArray.length) {
