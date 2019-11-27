@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { List } from '@material-ui/core';
+import { List, Grid, Button } from '@material-ui/core';
 import ContainerTreeItem from '../container/ContainerTreeItem';
 
 
@@ -9,12 +9,19 @@ interface Props {
     realMap: Map<any, any>,
     selectedKey: string,
     setSelectedKey(selectedKey: string): void,
+    handleDelete(): void,
 }
 
 const PresentationalTreeView = (props: Props) => {
 
 
-    const treeItem = React.useCallback(() => {
+    React.useEffect(() => {
+        console.log(props.realMap)
+    })
+
+
+    const treeItem = React.useMemo(() => {
+        console.log('re')
         let isChild = true;
         if (1 < props.firstDepth.length) {
             return props.firstDepth.map((v: any, i: number) => {
@@ -29,7 +36,7 @@ const PresentationalTreeView = (props: Props) => {
                         label={v.group_name}
                         selectedKey={props.selectedKey}
                         setSelectedKey={(s: string) => props.setSelectedKey(s)}
-                        selectKey={i + ''}
+                        selectKey={v.group_name}
                     />
                 )
             })
@@ -37,9 +44,23 @@ const PresentationalTreeView = (props: Props) => {
     }, [props])
 
     return (
-        <List component='nav'>
-            {treeItem()}
-        </List>
+        <Grid container>
+            <Grid item xs={12}>
+                <List component='nav'>
+                    {treeItem}
+                </List>
+            </Grid>
+            <Grid item xs={4}>
+                <Button onClick={props.handleDelete}>삭제</Button>
+            </Grid>
+            <Grid item xs={4}>
+                <Button>수정</Button>
+            </Grid>
+            <Grid item xs={4}>
+                <Button>추가</Button>
+            </Grid>
+        </Grid>
+
     );
 }
 

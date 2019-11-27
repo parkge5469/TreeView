@@ -21,7 +21,6 @@ const ContainerTreeItem = (props: Props) => {
     const [spacing, setSpacing] = React.useState(0);
 
     React.useMemo(() => {
-        console.log(props.selectedKey)
         if (props.spacing) {
             setSpacing(props.spacing);
         }
@@ -30,7 +29,6 @@ const ContainerTreeItem = (props: Props) => {
 
     const handleClick = React.useCallback(() => {
         setOpen(!open);
-        // console.log(typeof props.selectKey)
         props.setSelectedKey(props.selectKey);
     }, [open, props])
 
@@ -43,6 +41,8 @@ const ContainerTreeItem = (props: Props) => {
         return childArray.map((v, i) => {
             if (0 === treeMap.get(v).children.length) {
                 isChild = false;
+            } else {
+                isChild = true;
             }
             return (
                 <ContainerTreeItem
@@ -53,7 +53,7 @@ const ContainerTreeItem = (props: Props) => {
                     spacing={spacing + 4}
                     setSelectedKey={(s: string) => props.setSelectedKey(s)}
                     selectedKey={props.selectedKey}
-                    selectKey={props.selectKey + '-' + i}
+                    selectKey={v}
                 />
             )
         })

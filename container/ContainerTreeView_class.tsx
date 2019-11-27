@@ -76,6 +76,10 @@ class ContainerTreeView extends React.Component<Props, State> {
         }
     }
 
+    handleDelete = () => {
+        this.state.realMap.delete(this.state.selectedKey);
+    }
+
     public render() {
 
         return (
@@ -88,6 +92,7 @@ class ContainerTreeView extends React.Component<Props, State> {
                         realMap={this.state.realMap}
                         selectedKey={this.state.selectedKey}
                         setSelectedKey={(s: string) => this.setState({ ...this.state, selectedKey: s })}
+                        handleDelete={() => this.handleDelete()}
                     />
                 }
             </>
