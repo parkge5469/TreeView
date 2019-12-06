@@ -45,22 +45,23 @@ const ContainerTreeItem = (props: Props) => {
                 isChild = false;
             }
             return (
-                <ContainerTreeItem
-                    key={i}
-                    data={props.data}
-                    isChild={isChild}
-                    label={v}
-                    spacing={spacing + 4}
-                    setSelectedKey={(s: string) => props.setSelectedKey(s)}
-                    selectedKey={props.selectedKey}
-                    selectKey={props.selectKey + '-' + i}
-                />
+                // <ContainerTreeItem
+                //     key={i}
+                //     data={props.data}
+                //     isChild={isChild}
+                //     label={v}
+                //     spacing={spacing + 4}
+                //     setSelectedKey={(s: string) => props.setSelectedKey(s)}
+                //     selectedKey={props.selectedKey}
+                //     selectKey={props.selectKey + '-' + i}
+                // />
+                <div></div>
             )
         })
     }, [props])
     return (
         <React.Fragment>
-            <PresentationalTreeItem
+            {/* <PresentationalTreeItem
                 spacing={spacing}
                 selectedKey={props.selectedKey}
                 selectKey={props.selectKey}
@@ -69,7 +70,8 @@ const ContainerTreeItem = (props: Props) => {
                 open={open}
                 handleClick={() => handleClick()}
                 childItem={() => childItem()}
-            />
+            /> */}
+            <div></div>
         </React.Fragment>
     );
 }

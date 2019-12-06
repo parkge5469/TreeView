@@ -87,13 +87,16 @@ class ContainerTreeView extends React.Component<Props, State> {
                 {0 === this.props.data.length ?
                     console.log(this.props.data)
                     :
-                    <PresentationalTreeView
-                        firstDepth={this.state.firstDepth}
-                        realMap={this.state.realMap}
-                        selectedKey={this.state.selectedKey}
-                        setSelectedKey={(s: string) => this.setState({ ...this.state, selectedKey: s })}
-                        handleDelete={() => this.handleDelete()}
-                    />
+                    // <PresentationalTreeView
+                    //     firstDepth={this.state.firstDepth}
+                    //     realMap={this.state.realMap}
+                    //     selectedKey={this.state.selectedKey}
+                    //     setSelectedKey={(s: string) => this.setState({ ...this.state, selectedKey: s })}
+                    //     handleDelete={() => this.handleDelete()}
+
+                    // />
+                    <div>
+                    </div>
                 }
             </>
         );

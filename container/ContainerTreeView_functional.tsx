@@ -12,6 +12,9 @@ const ContainerTreeView = (props: Props) => {
     const [realMap, setRealMap] = React.useState(new Map());
     const [firstDepth, setFirstDepth] = React.useState([{}]);
     const [selectedKey, setSelectedKey] = React.useState('');
+    const [clientX, setClientX] = React.useState<number | null>(null);
+    const [clientY, setClientY] = React.useState<number | null>(null);
+    const [popupOpen, setPopupOpen] = React.useState(false);
 
     React.useMemo(() => {
         if (0 !== props.data.length) {
@@ -99,6 +102,17 @@ const ContainerTreeView = (props: Props) => {
             })
     }, [selectedKey, realMap])
 
+    const contextMenu = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        console.log(e.currentTarget.getBoundingClientRect())
+        console.log(e.clientX)
+        console.log(e.clientY)
+
+        setClientX(e.clientX);
+        setClientY(e.clientY);
+        setPopupOpen(true);
+    }, [])
+
     const returnMemo = React.useMemo(() => {
         if (0 === props.data.length) {
             return (<div></div>)
@@ -110,6 +124,11 @@ const ContainerTreeView = (props: Props) => {
                     selectedKey={selectedKey}
                     setSelectedKey={(s: string) => setSelectedKey(s)}
                     handleDelete={() => handleDelete()}
+                    contextMenu={(e: React.MouseEvent<HTMLDivElement>) => contextMenu(e)}
+                    popupOpen={popupOpen}
+                    setPopupOpen={(b: boolean) => setPopupOpen(b)}
+                    clientX={clientX}
+                    clientY={clientY}
                 />
             )
         }
@@ -124,6 +143,11 @@ const ContainerTreeView = (props: Props) => {
                 selectedKey={selectedKey}
                 setSelectedKey={(s: string) => setSelectedKey(s)}
                 handleDelete={() => handleDelete()}
+                contextMenu={(e: React.MouseEvent<HTMLDivElement>) => contextMenu(e)}
+                popupOpen={popupOpen}
+                setPopupOpen={(b: boolean) => setPopupOpen(b)}
+                clientX={clientX}
+                clientY={clientY}
             />
         </>
     );

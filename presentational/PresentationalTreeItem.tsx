@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListItem, ListItemText, Collapse, List, makeStyles, Theme } from '@material-ui/core';
+import { ListItem, ListItemText, Collapse, List, makeStyles, Theme, Menu, MenuItem } from '@material-ui/core';
 
 //ICON
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
@@ -14,6 +14,7 @@ interface Props {
     label: string,
     isChild: boolean,
     open: boolean,
+    contextMenu(e: React.MouseEvent<HTMLDivElement>): void,
 }
 interface StyleProps {
     spacing?: number,
@@ -25,13 +26,17 @@ const PresentationalTreeItem = (props: Props) => {
         spacing: props.spacing,
     }
 
-
     const classes = useStyles(styleProps);
 
     const yesChild = () => {
         return (
             <>
-                <ListItem button onClick={props.handleClick} className={classes.nextDepth} selected={props.selectedKey === props.selectKey}>
+                <ListItem
+                    button
+                    onClick={props.handleClick}
+                    className={classes.nextDepth}
+                    selected={props.selectedKey === props.selectKey}
+                >
                     {props.open ? <ArrowDropDownIcon /> : <ArrowRightIcon />}
                     <ListItemText primary={props.label} />
                 </ListItem>
@@ -46,8 +51,15 @@ const PresentationalTreeItem = (props: Props) => {
 
     const noChild = () => {
         return (
-            <ListItem button onClick={props.handleClick} className={classes.nextDepth} selected={props.selectedKey === props.selectKey}>
-                <ListItemText primary={props.label} />
+            <ListItem
+                button
+                onClick={props.handleClick}
+                className={classes.nextDepth}
+                selected={props.selectedKey === props.selectKey}
+            >
+                <div onContextMenu={props.contextMenu}>
+                    <ListItemText primary={props.label} />
+                </div>
             </ListItem>
         );
     }

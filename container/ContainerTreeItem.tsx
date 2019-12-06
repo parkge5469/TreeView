@@ -13,6 +13,7 @@ interface Props {
     selectKey: string,
     selectedKey: string,
     setSelectedKey(selectKey: string): void,
+    contextMenu(e: React.MouseEvent<HTMLDivElement>): void,
 }
 
 
@@ -54,6 +55,7 @@ const ContainerTreeItem = (props: Props) => {
                     setSelectedKey={(s: string) => props.setSelectedKey(s)}
                     selectedKey={props.selectedKey}
                     selectKey={v}
+                    contextMenu={(e: React.MouseEvent<HTMLDivElement>) => props.contextMenu(e)}
                 />
             )
         })
@@ -69,6 +71,7 @@ const ContainerTreeItem = (props: Props) => {
                 open={open}
                 handleClick={() => handleClick()}
                 childItem={() => childItem()}
+                contextMenu={(e: React.MouseEvent<HTMLDivElement>) => props.contextMenu(e)}
             />
         </React.Fragment>
     );
